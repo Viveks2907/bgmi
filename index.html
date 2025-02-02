@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Download Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        video {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        #downloadBtn {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #downloadBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Watch and Download Video</h2>
+    <video id="videoPlayer" controls>
+        <source src="Screen Recording 2025-02-01 194416.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <button id="downloadBtn">Download Video</button>
+
+    <script>
+        const video = document.getElementById("videoPlayer");
+        const downloadBtn = document.getElementById("downloadBtn");
+
+        video.addEventListener("play", function() {
+            downloadBtn.style.display = "block";
+        });
+
+        downloadBtn.addEventListener("click", function() {
+            const videoSrc = video.querySelector("source").src;
+            const a = document.createElement("a");
+            a.href = videoSrc;
+            a.download = "downloaded_video.mp4";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+    </script>
+
+</body>
+</html>
